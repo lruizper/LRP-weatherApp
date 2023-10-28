@@ -121,7 +121,11 @@ def find_min(weather_data):
             i=float(i)
             my_float_list.append(i)
         my_lowest_temp=min(my_float_list) 
-        my_index=my_float_list.index(my_lowest_temp) 
+        my_indices_list=[]
+        for hit, low_temp in enumerate (my_float_list):
+            if low_temp==my_lowest_temp:
+                my_indices_list.append(hit)
+        my_index=my_indices_list[-1]
         return (my_lowest_temp, my_index)
     else:
         # print ('data is empty or not numbers') 
