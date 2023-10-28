@@ -29,7 +29,6 @@ def convert_date(iso_string):
     human_date_time=date_time_object.strftime('%A %d %B %Y')
     # print(human_date_time)
     return(human_date_time)
-    # pass
 
 #debigging
 # convert_date('2020-06-22T07:00:00+08:00')
@@ -57,7 +56,7 @@ def calculate_mean(weather_data):
         A float representing the mean value.
     """
     if len(weather_data)>0:
-        print ('in first leg')
+        # print ('in first leg')
         # print (type(weather_data[0]))
         my_float_list=[]  
         for i in weather_data:
@@ -66,15 +65,10 @@ def calculate_mean(weather_data):
         my_lenght=len(my_float_list)
         my_sum=sum(my_float_list)
         my_mean=(my_sum/my_lenght)
-        print (my_mean)
+        # print (my_mean)
         return(my_mean)
-        
-    # elif len(weather_data)>0 and type(weather_data[0]=='str'):
-    #     print('string leg')
     else:
         print ('data is empty or not numbers')
-   
-        # pass
 
 #debugging
 # test_list= [ '45', 34, 45, 35, 21, 15 ]
@@ -109,12 +103,9 @@ def load_data_from_csv(csv_file):
                 print("Data is empty, not appending.")
         # print (my_list)
         return my_list
-    # pass
 
 #debugging
 # load_data_from_csv('tests/data/example_two.csv')
-
-
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
@@ -124,8 +115,23 @@ def find_min(weather_data):
     Returns:
         The minium value and it's position in the list.
     """
-    pass
+    if len(weather_data)>0:
+        my_float_list=[]  
+        for i in weather_data:
+            i=float(i)
+            my_float_list.append(i)
+        my_lowest_temp=min(my_float_list) 
+        my_index=my_float_list.index(my_lowest_temp) 
+        return (my_lowest_temp, my_index)
+    else:
+        # print ('data is empty or not numbers') 
+        return ()       
 
+# #debugging
+# temperatures = [10.4, 14.5, 12.9, 8.9, 10.5, 11.7]
+#         # expected_result = (8.9, 3)
+# my_min=find_min(temperatures)
+# print(my_min)
 
 def find_max(weather_data):
     """Calculates the maximum value in a list of numbers.
