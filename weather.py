@@ -46,8 +46,7 @@ def convert_f_to_c(temp_in_farenheit):
     temp_in_farenheit=float(temp_in_farenheit)
     temp_in_celsius= round ((((temp_in_farenheit-32)*5)/9) , 1)
     return (temp_in_celsius)
-    # pass
-
+   
 
 def calculate_mean(weather_data):
     """Calculates the mean value from a list of numbers.
@@ -57,7 +56,31 @@ def calculate_mean(weather_data):
     Returns:
         A float representing the mean value.
     """
-    pass
+    if len(weather_data)>0:
+        print ('in first leg')
+        # print (type(weather_data[0]))
+        my_float_list=[]  
+        for i in weather_data:
+            i=float(i)
+            my_float_list.append(i)
+        my_lenght=len(my_float_list)
+        my_sum=sum(my_float_list)
+        my_mean=(my_sum/my_lenght)
+        print (my_mean)
+        return(my_mean)
+        
+    # elif len(weather_data)>0 and type(weather_data[0]=='str'):
+    #     print('string leg')
+    else:
+        print ('data is empty or not numbers')
+   
+        # pass
+
+#debugging
+# test_list= [ '45', 34, 45, 35, 21, 15 ]
+# my_average_temp=calculate_mean(test_list)
+# print(my_average_temp)
+
 
 def load_data_from_csv(csv_file):
     """Reads a csv file and stores the data in a list.
