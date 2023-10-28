@@ -169,8 +169,22 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    # pass
 
+    for day in weather_data:
+        print (day)
+        human_date=convert_date(day[0])
+        # print (human_date)
+        min_temperature= format_temperature( convert_f_to_c(day[1]))
+        max_temperature= format_temperature( convert_f_to_c(day[2]))
+        # result_message= print(f'----  {human_date} ----')
+        result_message= print(f'----  {human_date} ---- \n Minimum Temperature: {min_temperature} \n Maximum Temperature: {max_temperature} \n'
+                              )
+        return( result_message)
+
+# debugging
+my_weather_forecast=load_data_from_csv('tests/data/example_one.csv')
+generate_summary(my_weather_forecast)
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
