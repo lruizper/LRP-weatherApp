@@ -99,8 +99,8 @@ def load_data_from_csv(csv_file):
                 row[2]=int(row[2])
                 my_list.append(row)
                 # print(row)
-            else:
-                print("Data is empty, not appending.")
+            # else:
+            #     # print("Data is empty, not appending.")
         # print (my_list)
         return my_list
 
@@ -145,8 +145,21 @@ def find_max(weather_data):
     Returns:
         The maximum value and it's position in the list.
     """
-    pass
-
+    if len(weather_data)>0:
+        my_float_list=[]  
+        for i in weather_data:
+            i=float(i)
+            my_float_list.append(i)
+        my_highest_temp=max(my_float_list) 
+        my_indices_list=[]
+        for hit, low_temp in enumerate (my_float_list):
+            if low_temp==my_highest_temp:
+                my_indices_list.append(hit)
+        my_index=my_indices_list[-1]
+        return (my_highest_temp, my_index)
+    else:
+        # print ('data is empty or not numbers') 
+        return ()       
 
 def generate_summary(weather_data):
     """Outputs a summary for the given weather data.
