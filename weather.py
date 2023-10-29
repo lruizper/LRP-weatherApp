@@ -183,24 +183,34 @@ def generate_summary(weather_data):
     for day in weather_data:
         human_date=convert_date(day[0])
         human_date_list.append(human_date)
-        min_temperature= format_temperature( convert_f_to_c(day[1]))
+        min_temperature= convert_f_to_c(day[1])
         low_temp_list.append(min_temperature)
-        max_temperature= format_temperature( convert_f_to_c(day[2]))
+        max_temperature=  convert_f_to_c(day[2])
         high_temp_list.append(max_temperature)
+    # print (low_temp_list)
+    # print (high_temp_list)
+    # print (human_date_list)
     # evaluate highest and lowest temperatures from lists
-    lowest_temp=format_temperature( find_min(low_temp_list)[0])
+    lowest_temp=format_temperature( find_min(low_temp_list))
     lowest_temp_index=find_min(low_temp_list)[1]
     day_of_lowest_temp=human_date_list[lowest_temp_index]
-    highest_temp=format_temperature( find_max(high_temp_list)[0])
+    highest_temp=format_temperature( find_max(high_temp_list))
     highest_temp_index=find_max(high_temp_list)[1]
     day_of_highest_temp=human_date_list[highest_temp_index]
-    #evaluate averages min and max
-    
+    # evaluate averages min and max
+    average_low= format_temperature( round ( calculate_mean(low_temp_list) , 1))
+    average_high= format_temperature( round ( calculate_mean(high_temp_list) , 1))
     result_message += f'  The lowest temperature will be {lowest_temp}, and will occur on {day_of_lowest_temp}.\n'
     result_message += f'  The highest temperature will be {highest_temp}, and will occur on {day_of_highest_temp}.\n'
-    result_message += f'  The average low this week is .\n'
+    result_message += f'  The average low this week is {average_low}.\n'
+    result_message += f'  The average high this week is {average_high}.\n'
     return result_message
 
+# # debugging
+my_weather_forecast=load_data_from_csv('tests/data/example_one.csv')
+print(my_weather_forecast)
+sumnary_example=generate_summary(my_weather_forecast)
+print(sumnary_example)
 
 
 def generate_daily_summary(weather_data):
@@ -225,6 +235,6 @@ def generate_daily_summary(weather_data):
 
 # # # debugging
 # my_weather_forecast=load_data_from_csv('tests/data/example_one.csv')
-# sunnary_example=generate_summary(my_weather_forecast)
+# sunnary_example=generate_daily_summary(my_weather_forecast)
 # print(sunnary_example)
    
