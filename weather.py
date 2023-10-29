@@ -169,7 +169,37 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    #create empty result message
+    result_message=''
+    #how many days forecast
+    days_forecast=len(weather_data)
+    #write to first line of result message
+    result_message += f'{days_forecast} Day Overview\n'
+    #create empty lists for min and max temperatures
+    low_temp_list=[]
+    high_temp_list=[]
+    human_date_list=[]
+    
+    for day in weather_data:
+        human_date=convert_date(day[0])
+        human_date_list.append(human_date)
+        min_temperature= format_temperature( convert_f_to_c(day[1]))
+        low_temp_list.append(min_temperature)
+        max_temperature= format_temperature( convert_f_to_c(day[2]))
+        high_temp_list.append(max_temperature)
+    # evaluate highest and lowest temperatures from lists
+    lowest_temp=format_temperature( find_min(low_temp_list)[0])
+    lowest_temp_index=find_min(low_temp_list)[1]
+    day_of_lowest_temp=human_date_list[lowest_temp_index]
+    highest_temp=format_temperature( find_max(high_temp_list)[0])
+    highest_temp_index=find_max(high_temp_list)[1]
+    day_of_highest_temp=human_date_list[highest_temp_index]
+    #evaluate averages min and max
+    
+    result_message += f'  The lowest temperature will be {lowest_temp}, and will occur on {day_of_lowest_temp}.\n'
+    result_message += f'  The highest temperature will be {highest_temp}, and will occur on {day_of_highest_temp}.\n'
+    result_message += f'  The average low this week is .\n'
+    return result_message
 
 
 
