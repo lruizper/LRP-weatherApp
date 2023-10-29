@@ -25,13 +25,8 @@ def convert_date(iso_string):
         A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
     """
     date_time_object=datetime.fromisoformat(iso_string)
-    # human_date_time=date_time_object.strftime('%A %d %B %Y at %I:%M %p')
     human_date_time=date_time_object.strftime('%A %d %B %Y')
-    # print(human_date_time)
     return(human_date_time)
-
-#debigging
-# convert_date('2020-06-22T07:00:00+08:00')
 
 
 def convert_f_to_c(temp_in_farenheit):
@@ -56,8 +51,6 @@ def calculate_mean(weather_data):
         A float representing the mean value.
     """
     if len(weather_data)>0:
-        # print ('in first leg')
-        # print (type(weather_data[0]))
         my_float_list=[]  
         for i in weather_data:
             i=float(i)
@@ -69,11 +62,6 @@ def calculate_mean(weather_data):
         return(my_mean)
     else:
         print ('data is empty or not numbers')
-
-#debugging
-# test_list= [ '45', 34, 45, 35, 21, 15 ]
-# my_average_temp=calculate_mean(test_list)
-# print(my_average_temp)
 
 
 def load_data_from_csv(csv_file):
@@ -91,21 +79,11 @@ def load_data_from_csv(csv_file):
         data = list(reader)
         for row in data:
             if len(row)>0:
-                # #check the format of the numbers and date
-                # for i in row:
-                #     print(type (i))
-                #convert to temperatures to integer
                 row[1]=int(row[1])
                 row[2]=int(row[2])
                 my_list.append(row)
-                # print(row)
-            # else:
-            #     # print("Data is empty, not appending.")
-        # print (my_list)
         return my_list
 
-#debugging
-# load_data_from_csv('tests/data/example_two.csv')
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
@@ -131,11 +109,6 @@ def find_min(weather_data):
         # print ('data is empty or not numbers') 
         return ()       
 
-# #debugging
-# temperatures = [10.4, 14.5, 12.9, 8.9, 10.5, 11.7]
-#         # expected_result = (8.9, 3)
-# my_min=find_min(temperatures)
-# print(my_min)
 
 def find_max(weather_data):
     """Calculates the maximum value in a list of numbers.
@@ -187,9 +160,6 @@ def generate_summary(weather_data):
         low_temp_list.append(min_temperature)
         max_temperature=  convert_f_to_c(day[2])
         high_temp_list.append(max_temperature)
-    # print (low_temp_list)
-    # print (high_temp_list)
-    # print (human_date_list)
     # evaluate highest and lowest temperatures from lists
     lowest_temp=format_temperature( find_min(low_temp_list)[0])
     lowest_temp_index=find_min(low_temp_list)[1]
@@ -205,12 +175,6 @@ def generate_summary(weather_data):
     result_message += f'  The average low this week is {average_low}.\n'
     result_message += f'  The average high this week is {average_high}.\n'
     return result_message
-
-# # debugging
-my_weather_forecast=load_data_from_csv('tests/data/example_one.csv')
-# print(my_weather_forecast)
-sumnary_example=generate_summary(my_weather_forecast)
-print(sumnary_example)
 
 
 def generate_daily_summary(weather_data):
@@ -232,9 +196,3 @@ def generate_daily_summary(weather_data):
         result_message += f'---- {human_date} ----\n  Minimum Temperature: {min_temperature}\n  Maximum Temperature: {max_temperature}\n\n'            
         # print(result_message)
     return result_message
-
-# # # debugging
-# my_weather_forecast=load_data_from_csv('tests/data/example_one.csv')
-# sunnary_example=generate_daily_summary(my_weather_forecast)
-# print(sunnary_example)
-   
