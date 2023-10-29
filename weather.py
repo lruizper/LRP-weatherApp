@@ -191,10 +191,10 @@ def generate_summary(weather_data):
     # print (high_temp_list)
     # print (human_date_list)
     # evaluate highest and lowest temperatures from lists
-    lowest_temp=format_temperature( find_min(low_temp_list))
+    lowest_temp=format_temperature( find_min(low_temp_list)[0])
     lowest_temp_index=find_min(low_temp_list)[1]
     day_of_lowest_temp=human_date_list[lowest_temp_index]
-    highest_temp=format_temperature( find_max(high_temp_list))
+    highest_temp=format_temperature( find_max(high_temp_list)[0])
     highest_temp_index=find_max(high_temp_list)[1]
     day_of_highest_temp=human_date_list[highest_temp_index]
     # evaluate averages min and max
@@ -208,7 +208,7 @@ def generate_summary(weather_data):
 
 # # debugging
 my_weather_forecast=load_data_from_csv('tests/data/example_one.csv')
-print(my_weather_forecast)
+# print(my_weather_forecast)
 sumnary_example=generate_summary(my_weather_forecast)
 print(sumnary_example)
 
